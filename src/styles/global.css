@@ -1,0 +1,89 @@
+:root {
+  --bg: #f9f8fb;
+  --ink: #2f2342; /* plum — primary ink, ties text to the brand */
+  /* muted plum-gray, passes WCAG AA (≈5.0:1) on the off-white bg */
+  --muted: #635b6e;
+  --line: #e7e4ec;
+  --accent: #e42f45;
+  --bar: #d9d5e0;
+  --bar-active: #2f2342;
+  --card: #ffffff;
+
+  /* Phase palette — four mesocycles, base → engine → sharpen → taper.
+     The brand four: plum, periwinkle, bright red, clay red. */
+  --p1: #2f2342; /* base — plum */
+  --p2: #7ca0e5; /* engine — periwinkle */
+  --p3: #e42f45; /* sharpen — bright red */
+  --p4: #b42b3f; /* taper — clay red */
+
+  /* Workout-type palette for the weekly composition stacks. */
+  --t-quality: #e42f45; /* bright red — hard efforts pop */
+  --t-long: #2f2342; /* plum — the foundational long run */
+  --t-medlong: #7ca0e5; /* periwinkle */
+  --t-easy: #d6dae8; /* light blue-gray — the bulk, recedes */
+  --t-commute: #9aa9c9; /* mid periwinkle-gray */
+  --t-other: #eceaf1; /* lightest plum tint */
+
+  --maxw: 1040px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+#root {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(24px, 6vw, 80px) clamp(20px, 6vw, 80px);
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+b {
+  font-weight: 600;
+}
+
+/* Shared eyebrow / section-label treatment */
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
