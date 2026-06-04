@@ -65,12 +65,18 @@ src/
 
 ## Deploy
 
-Same model as running-tracker: a separate **public GitHub repo**, with `web/chicago-tracker/`
-mirrored out via `git subtree` and **Netlify building from source** on each push (see
-`netlify.toml`: `npm run build`, publish `dist/`). Publishing is throttled weekly so the
-data.json that ships each deploy is current without burning Netlify build minutes. See the
-repo-root `CLAUDE.md` evening-sync step 6 and `scripts/publish_tracker.sh` for the running
-tracker's wiring, which this app parallels.
+Same model as running-tracker: a separate **public GitHub repo**
+([Splee9/chicago-tracker](https://github.com/Splee9/chicago-tracker) →
+[chicagomarathon2026.netlify.app](https://chicagomarathon2026.netlify.app)), with
+`web/chicago-tracker/` mirrored out via `git subtree` and **Netlify building from source** on
+each push (see `netlify.toml`: `npm run build`, publish `dist/`).
+
+`scripts/publish_tracker.sh` publishes **both** trackers, each Sunday-pinned with its own
+throttle so Netlify builds stay inside the free tier: **this one weekly** (`MIN_DAYS` 6), the
+lifetime running-tracker **every 3 weeks** (`MIN_DAYS` 20). data.json is regenerated from
+`metrics.db` at push time, so each deploy ships current data — no separate refresh step. The
+cadence watermark is `wiki/meta/chicago-last-publish.txt`. See the repo-root `CLAUDE.md`
+evening-sync step 6 for the full wiring (remotes, unattended PAT auth, watermarks).
 
 ## Notes
 
