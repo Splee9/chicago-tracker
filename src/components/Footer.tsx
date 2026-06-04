@@ -14,6 +14,11 @@ export function Footer() {
         Last refreshed {formatDate(meta.lastUpdated)} · rebuilt automatically from a Strava + Garmin
         training log. Aggregate weekly figures only — no pace, GPS, heart rate, or health data.
       </p>
+      <p className={styles.crosslink}>
+        <a href="https://spencerruns.netlify.app/">
+          Zoom out to a decade of lifetime mileage <span className={styles.arrow}>→</span>
+        </a>
+      </p>
     </footer>
   );
 }
