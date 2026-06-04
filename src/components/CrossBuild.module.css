@@ -145,10 +145,19 @@
   align-items: center;
   border-bottom: 1px solid var(--line);
   font-size: 14px;
+  transition: background 0.18s ease;
 }
 
 .trow:last-child {
   border-bottom: none;
+}
+
+.trowData {
+  cursor: pointer;
+}
+
+.trowHover {
+  background: var(--bg);
 }
 
 .thead {

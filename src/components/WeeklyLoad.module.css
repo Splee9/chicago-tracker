@@ -211,4 +211,18 @@
   font-size: 12px;
   fill: var(--muted);
   font-family: var(--mono);
+  transition: fill 0.15s ease;
+}
+
+.efLabelSel {
+  fill: var(--ink);
+  font-weight: 700;
+}
+
+.efBest {
+  font-size: 10px;
+  fill: var(--p3);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }

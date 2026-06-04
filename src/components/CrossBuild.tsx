@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { data } from "../lib/data";
 import { fmt1 } from "../lib/format";
@@ -11,6 +12,7 @@ const plotH = H - PAD.t - PAD.b;
 
 export function CrossBuild() {
   const reduce = useReducedMotion();
+  const [hoverBuild, setHoverBuild] = useState<string | null>(null);
   const cb = data.crossBuild;
   if (!cb) return null;
 
@@ -75,24 +77,62 @@ export function CrossBuild() {
           </text>
 
           {/* completed builds */}
-          {builds.map((b, i) => (
-            <motion.g
-              key={b.build}
-              initial={reduce ? false : { opacity: 0, scale: 0.5 }}
-              whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              style={{ transformOrigin: `${x(b.avg)}px ${y(b.ef)}px` }}
-            >
-              <circle cx={x(b.avg)} cy={y(b.ef)} r={6} fill="var(--muted)" opacity={0.55} />
-              <text x={x(b.avg)} y={y(b.ef) - 12} className={styles.pointLabel} textAnchor="middle">
-                {b.build.replace(/ 20/, " '")}
-              </text>
-              <text x={x(b.avg)} y={y(b.ef) + 20} className={styles.pointResult} textAnchor="middle">
-                {b.result}
-              </text>
-            </motion.g>
-          ))}
+          {builds.map((b, i) => {
+            const active = hoverBuild === b.build;
+            const dim = hoverBuild !== null && !active;
+            return (
+              <motion.g
+                key={b.build}
+                initial={reduce ? false : { opacity: 0, scale: 0.5 }}
+                whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                style={{ transformOrigin: `${x(b.avg)}px ${y(b.ef)}px`, cursor: "pointer" }}
+                onMouseEnter={() => setHoverBuild(b.build)}
+                onMouseLeave={() => setHoverBuild(null)}
+              >
+                {active && (
+                  <circle
+                    cx={x(b.avg)}
+                    cy={y(b.ef)}
+                    r={14}
+                    fill="none"
+                    stroke="var(--ink)"
+                    strokeWidth={1.5}
+                    opacity={0.4}
+                  />
+                )}
+                <circle
+                  cx={x(b.avg)}
+                  cy={y(b.ef)}
+                  r={active ? 8 : 6}
+                  fill="var(--muted)"
+                  style={{
+                    opacity: dim ? 0.22 : active ? 0.9 : 0.55,
+                    transition: "r 0.2s ease, opacity 0.2s ease",
+                  }}
+                />
+                <text
+                  x={x(b.avg)}
+                  y={y(b.ef) - 12}
+                  className={styles.pointLabel}
+                  textAnchor="middle"
+                  style={{ opacity: dim ? 0.3 : 1, fontWeight: active ? 700 : 600, transition: "opacity 0.2s ease" }}
+                >
+                  {b.build.replace(/ 20/, " '")}
+                </text>
+                <text
+                  x={x(b.avg)}
+                  y={y(b.ef) + 20}
+                  className={styles.pointResult}
+                  textAnchor="middle"
+                  style={{ opacity: dim ? 0.3 : 1, transition: "opacity 0.2s ease" }}
+                >
+                  {b.result}
+                </text>
+              </motion.g>
+            );
+          })}
 
           {/* Chicago current */}
           <motion.g
@@ -121,7 +161,12 @@ export function CrossBuild() {
           <span>Easy EF</span>
         </div>
         {builds.map((b) => (
-          <div className={styles.trow} key={b.build}>
+          <div
+            className={`${styles.trow} ${styles.trowData} ${hoverBuild === b.build ? styles.trowHover : ""}`}
+            key={b.build}
+            onMouseEnter={() => setHoverBuild(b.build)}
+            onMouseLeave={() => setHoverBuild(null)}
+          >
             <span className={styles.tname}>{b.build}</span>
             <span className={styles.tmono}>{b.result}</span>
             <span className={styles.tmono}>{fmt1(b.avg)}</span>

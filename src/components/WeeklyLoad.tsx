@@ -30,7 +30,29 @@ export function WeeklyLoad() {
   const efVals = weeks.map((w) => w.easyEF).filter((v): v is number => v != null);
   const efMin = Math.min(...efVals) - 0.02;
   const efMax = Math.max(...efVals) + 0.02;
-  const efY = (v: number) => 10 + 70 * (1 - (v - efMin) / (efMax - efMin));
+  const efY = (v: number) => 24 + 56 * (1 - (v - efMin) / (efMax - efMin));
+  const EF_BASE = 92; // area-fill baseline in the EF chart's viewBox
+
+  // Index of the best (highest-EF) week, for a "best" marker.
+  let efBestIdx = -1;
+  let efBestVal = -Infinity;
+  weeks.forEach((w, i) => {
+    if (w.easyEF != null && w.easyEF > efBestVal) {
+      efBestVal = w.easyEF;
+      efBestIdx = i;
+    }
+  });
+
+  // Points + filled-area path for the EF trend.
+  const efPts = weeks
+    .map((w, i) => (w.easyEF != null ? { x: cx(i), y: efY(w.easyEF) } : null))
+    .filter((p): p is { x: number; y: number } => p != null);
+  const efLinePts = efPts.map((p) => `${p.x},${p.y}`).join(" ");
+  const efAreaPath = efPts.length
+    ? `M ${efPts[0].x},${EF_BASE} ` +
+      efPts.map((p) => `L ${p.x},${p.y}`).join(" ") +
+      ` L ${efPts[efPts.length - 1].x},${EF_BASE} Z`
+    : "";
 
   return (
     <section className={styles.section} aria-label="Weekly training load">
@@ -162,15 +184,33 @@ export function WeeklyLoad() {
         <div className={styles.efHead}>
           <span className="eyebrow">Aerobic efficiency</span>
           <span className={styles.efNote}>
-            meters per heartbeat on easy runs — higher means more pace for the same effort
+            meters per heartbeat on easy runs — higher means more pace for the same effort.
+            Hover a point to pull that week up top.
           </span>
         </div>
-        <svg className={styles.efChart} viewBox="0 0 1000 90" role="img" aria-label="Easy-run efficiency trend">
+        <svg className={styles.efChart} viewBox="0 0 1000 104" role="img" aria-label="Easy-run efficiency trend">
+          <defs>
+            <linearGradient id="efFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--p3)" stopOpacity={0.24} />
+              <stop offset="100%" stopColor="var(--p3)" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+
+          {/* area fill */}
+          {efAreaPath && (
+            <motion.path
+              d={efAreaPath}
+              fill="url(#efFill)"
+              initial={reduce ? false : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.25 }}
+            />
+          )}
+
+          {/* trend line */}
           <motion.polyline
-            points={weeks
-              .map((w, i) => (w.easyEF != null ? `${cx(i)},${efY(w.easyEF)}` : null))
-              .filter(Boolean)
-              .join(" ")}
+            points={efLinePts}
             fill="none"
             stroke="var(--p3)"
             strokeWidth={2.5}
@@ -181,11 +221,63 @@ export function WeeklyLoad() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           />
+
+          {/* selected-week guide */}
+          {sel.easyEF != null && (
+            <line
+              x1={cx(selected)}
+              x2={cx(selected)}
+              y1={efY(sel.easyEF)}
+              y2={EF_BASE}
+              stroke="var(--p3)"
+              strokeWidth={1}
+              strokeDasharray="2 3"
+              opacity={0.45}
+            />
+          )}
+
           {weeks.map((w, i) =>
             w.easyEF != null ? (
-              <g key={w.week}>
-                <circle cx={cx(i)} cy={efY(w.easyEF)} r={i === selected ? 5 : 3} fill="var(--p3)" />
-                <text x={cx(i)} y={efY(w.easyEF) - 10} className={styles.efLabel} textAnchor="middle">
+              <g
+                key={w.week}
+                onMouseEnter={() => setSelected(i)}
+                onFocus={() => setSelected(i)}
+                tabIndex={0}
+                role="button"
+                aria-label={`Week ${w.week} aerobic efficiency ${w.easyEF.toFixed(3)}`}
+                style={{ cursor: "pointer", outline: "none" }}
+              >
+                {/* hit area */}
+                <rect x={cx(i) - slot / 2} y={0} width={slot} height={104} fill="transparent" />
+                {i === efBestIdx && (
+                  <text x={cx(i)} y={efY(w.easyEF) + 16} className={styles.efBest} textAnchor="middle">
+                    best
+                  </text>
+                )}
+                {i === selected && (
+                  <circle
+                    cx={cx(i)}
+                    cy={efY(w.easyEF)}
+                    r={9}
+                    fill="none"
+                    stroke="var(--p3)"
+                    strokeWidth={1.5}
+                    opacity={0.5}
+                  />
+                )}
+                <circle
+                  cx={cx(i)}
+                  cy={efY(w.easyEF)}
+                  r={i === selected ? 5.5 : 3}
+                  fill="var(--p3)"
+                  style={{ transition: "r 0.15s ease" }}
+                />
+                <text
+                  x={cx(i)}
+                  y={efY(w.easyEF) - 11}
+                  className={`${styles.efLabel} ${i === selected ? styles.efLabelSel : ""}`}
+                  textAnchor="middle"
+                >
                   {w.easyEF.toFixed(3)}
                 </text>
               </g>

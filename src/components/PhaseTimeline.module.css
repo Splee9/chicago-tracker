@@ -33,6 +33,13 @@
   letter-spacing: 0.04em;
 }
 
+.bandLabel {
+  font-size: 13px;
+  fill: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .phaseCards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -46,10 +53,18 @@
   border-top: 3px solid var(--line);
   border-radius: 10px;
   padding: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .phaseCard.current {
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+}
+
+.phaseCard.cardHover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(47, 35, 66, 0.12);
 }
 
 .phaseHead {

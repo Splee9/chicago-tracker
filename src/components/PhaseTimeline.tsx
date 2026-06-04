@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { data, PHASE_VAR } from "../lib/data";
 import { formatDate } from "../lib/format";
@@ -31,6 +32,7 @@ function buildTargets(): WeekTarget[] {
 
 export function PhaseTimeline() {
   const reduce = useReducedMotion();
+  const [hoverPhase, setHoverPhase] = useState<number | null>(null);
   const { meta, phases } = data;
   const targets = buildTargets();
   const totalWeeks = targets.length;
@@ -90,9 +92,28 @@ export function PhaseTimeline() {
               width={b.x1 - b.x0}
               height={plotH}
               fill={`var(${PHASE_VAR[b.pi]})`}
-              opacity={0.1}
+              style={{
+                opacity: hoverPhase === null ? 0.1 : hoverPhase === b.pi ? 0.26 : 0.05,
+                cursor: "pointer",
+                transition: "opacity 0.25s ease",
+              }}
+              onMouseEnter={() => setHoverPhase(b.pi)}
+              onMouseLeave={() => setHoverPhase(null)}
             />
           ))}
+
+          {/* hovered-phase name label */}
+          {hoverPhase !== null && (
+            <text
+              x={(bands[hoverPhase].x0 + bands[hoverPhase].x1) / 2}
+              y={PAD.t + 16}
+              textAnchor="middle"
+              className={styles.bandLabel}
+              style={{ pointerEvents: "none" }}
+            >
+              {phases[hoverPhase].name}
+            </text>
+          )}
 
           {/* target volume line */}
           <motion.polyline
@@ -109,15 +130,20 @@ export function PhaseTimeline() {
           />
 
           {/* target points */}
-          {targets.map((t) => (
-            <circle
-              key={t.week}
-              cx={x(t.week)}
-              cy={y(t.target)}
-              r={t.week === meta.currentWeek ? 5 : 2.5}
-              fill={t.week === meta.currentWeek ? `var(${PHASE_VAR[t.phase]})` : "var(--ink)"}
-            />
-          ))}
+          {targets.map((t) => {
+            const isCur = t.week === meta.currentWeek;
+            const inHover = hoverPhase === t.phase;
+            return (
+              <circle
+                key={t.week}
+                cx={x(t.week)}
+                cy={y(t.target)}
+                r={isCur ? 5 : inHover ? 4 : 2.5}
+                fill={isCur || inHover ? `var(${PHASE_VAR[t.phase]})` : "var(--ink)"}
+                style={{ transition: "r 0.2s ease, fill 0.2s ease" }}
+              />
+            );
+          })}
 
           {/* "you are here" marker */}
           <line x1={curX} x2={curX} y1={PAD.t} y2={PAD.t + plotH} stroke="var(--ink)" strokeWidth={1} strokeDasharray="3 3" opacity={0.5} />
@@ -133,8 +159,15 @@ export function PhaseTimeline() {
           return (
             <div
               key={p.name}
-              className={`${styles.phaseCard} ${isCurrent ? styles.current : ""}`}
+              className={`${styles.phaseCard} ${isCurrent ? styles.current : ""} ${
+                hoverPhase === pi ? styles.cardHover : ""
+              }`}
               style={{ borderTopColor: `var(${PHASE_VAR[pi]})` }}
+              onMouseEnter={() => setHoverPhase(pi)}
+              onMouseLeave={() => setHoverPhase(null)}
+              onFocus={() => setHoverPhase(pi)}
+              onBlur={() => setHoverPhase(null)}
+              tabIndex={0}
             >
               <div className={styles.phaseHead}>
                 <span className={styles.phaseNum} style={{ color: `var(${PHASE_VAR[pi]})` }}>
