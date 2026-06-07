@@ -6,13 +6,13 @@
     "blockWeeks": 23,
     "goal": "sub-2:37:00",
     "goalPace": "5:59/mi",
-    "daysToRace": 129,
+    "daysToRace": 126,
     "currentPhase": 0,
     "currentPhaseName": "Base Reinforcement",
     "currentWeek": 5,
-    "blockMilesToDate": 245.3,
+    "blockMilesToDate": 274.0,
     "peakMpw": 88,
-    "lastUpdated": "2026-06-04"
+    "lastUpdated": "2026-06-07"
   },
   "phases": [
     {
@@ -138,24 +138,24 @@
       "weekStart": "2026-06-01",
       "phase": 0,
       "phaseShort": "Base",
-      "miles": 30.6,
-      "runs": 4,
-      "longest": 10.3,
-      "easyEF": 1.5,
+      "miles": 59.3,
+      "runs": 7,
+      "longest": 17.1,
+      "easyEF": 1.485,
       "types": {
         "quality": 10.3,
-        "long": 0.0,
+        "long": 17.1,
         "medlong": 0.0,
-        "easy": 16.2,
+        "easy": 27.8,
         "commute": 4.0,
         "other": 0.0
       },
-      "partial": true,
-      "rolling4": 48.6
+      "partial": false,
+      "rolling4": 55.7
     }
   ],
   "crossBuild": {
-    "generated": "2026-06-04",
+    "generated": "2026-06-07",
     "window_weeks": 18,
     "completed": [
       {
@@ -203,10 +203,10 @@
     ],
     "head_to_head": {
       "weeks_out": 18,
-      "note": "trailing 4 weeks at ~18 weeks out from race day (as of 2026-06-04)",
+      "note": "trailing 4 weeks at ~18 weeks out from race day (as of 2026-06-07)",
       "chi": {
-        "avg": 52.3,
-        "ef": 1.542
+        "avg": 55.7,
+        "ef": 1.532
       },
       "indy": {
         "avg": 46.8,
