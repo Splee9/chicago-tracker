@@ -6,13 +6,13 @@
     "blockWeeks": 23,
     "goal": "sub-2:37:00",
     "goalPace": "5:59/mi",
-    "daysToRace": 126,
+    "daysToRace": 118,
     "currentPhase": 0,
     "currentPhaseName": "Base Reinforcement",
-    "currentWeek": 5,
-    "blockMilesToDate": 274.0,
+    "currentWeek": 7,
+    "blockMilesToDate": 333.4,
     "peakMpw": 88,
-    "lastUpdated": "2026-06-07"
+    "lastUpdated": "2026-06-15"
   },
   "phases": [
     {
@@ -138,24 +138,64 @@
       "weekStart": "2026-06-01",
       "phase": 0,
       "phaseShort": "Base",
-      "miles": 59.3,
-      "runs": 7,
+      "miles": 62.4,
+      "runs": 8,
       "longest": 17.1,
       "easyEF": 1.485,
       "types": {
         "quality": 10.3,
         "long": 17.1,
         "medlong": 0.0,
-        "easy": 27.8,
+        "easy": 30.9,
         "commute": 4.0,
         "other": 0.0
       },
       "partial": false,
-      "rolling4": 55.7
+      "rolling4": 56.5
+    },
+    {
+      "week": 6,
+      "weekStart": "2026-06-08",
+      "phase": 0,
+      "phaseShort": "Base",
+      "miles": 56.3,
+      "runs": 8,
+      "longest": 15.8,
+      "easyEF": 1.552,
+      "types": {
+        "quality": 10.4,
+        "long": 15.8,
+        "medlong": 0.0,
+        "easy": 23.3,
+        "commute": 6.7,
+        "other": 0.0
+      },
+      "partial": false,
+      "rolling4": 56.8
+    },
+    {
+      "week": 7,
+      "weekStart": "2026-06-15",
+      "phase": 0,
+      "phaseShort": "Base",
+      "miles": 0.0,
+      "runs": 0,
+      "longest": 0.0,
+      "easyEF": null,
+      "types": {
+        "quality": 0.0,
+        "long": 0.0,
+        "medlong": 0.0,
+        "easy": 0.0,
+        "commute": 0.0,
+        "other": 0.0
+      },
+      "partial": true,
+      "rolling4": 43.0
     }
   ],
   "crossBuild": {
-    "generated": "2026-06-07",
+    "generated": "2026-06-15",
     "window_weeks": 18,
     "completed": [
       {
@@ -202,15 +242,15 @@
       }
     ],
     "head_to_head": {
-      "weeks_out": 18,
-      "note": "trailing 4 weeks at ~18 weeks out from race day (as of 2026-06-07)",
+      "weeks_out": 17,
+      "note": "trailing 4 weeks at ~17 weeks out from race day (as of 2026-06-15)",
       "chi": {
-        "avg": 55.7,
-        "ef": 1.532
+        "avg": 54.1,
+        "ef": 1.522
       },
       "indy": {
-        "avg": 46.8,
-        "ef": 1.402
+        "avg": 42.5,
+        "ef": 1.396
       }
     }
   },
