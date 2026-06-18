@@ -10,7 +10,7 @@
     "currentPhase": 0,
     "currentPhaseName": "Base Reinforcement",
     "currentWeek": 7,
-    "blockMilesToDate": 364.4,
+    "blockMilesToDate": 368.5,
     "peakMpw": 88,
     "lastUpdated": "2026-06-17"
   },
@@ -178,20 +178,20 @@
       "weekStart": "2026-06-15",
       "phase": 0,
       "phaseShort": "Base",
-      "miles": 31.0,
-      "runs": 4,
+      "miles": 35.1,
+      "runs": 5,
       "longest": 10.6,
-      "easyEF": 1.6,
+      "easyEF": 1.604,
       "types": {
         "quality": 10.6,
         "long": 0.0,
         "medlong": 0.0,
         "easy": 16.3,
-        "commute": 4.1,
+        "commute": 8.2,
         "other": 0.0
       },
       "partial": true,
-      "rolling4": 50.8
+      "rolling4": 51.8
     }
   ],
   "crossBuild": {
