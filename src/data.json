@@ -6,13 +6,13 @@
     "blockWeeks": 23,
     "goal": "sub-2:37:00",
     "goalPace": "5:59/mi",
-    "daysToRace": 89,
+    "daysToRace": 88,
     "currentPhase": 1,
     "currentPhaseName": "Engine Room",
     "currentWeek": 11,
-    "blockMilesToDate": 553.4,
+    "blockMilesToDate": 557.5,
     "peakMpw": 88,
-    "lastUpdated": "2026-07-14"
+    "lastUpdated": "2026-07-15"
   },
   "phases": [
     {
@@ -258,20 +258,20 @@
       "weekStart": "2026-07-13",
       "phase": 1,
       "phaseShort": "Engine",
-      "miles": 16.2,
-      "runs": 2,
+      "miles": 20.3,
+      "runs": 3,
       "longest": 8.2,
-      "easyEF": 1.406,
+      "easyEF": 1.413,
       "types": {
         "quality": 0.0,
         "long": 0.0,
         "medlong": 0.0,
         "easy": 16.2,
-        "commute": 0.0,
+        "commute": 4.1,
         "other": 0.0
       },
       "partial": true,
-      "rolling4": 39.8
+      "rolling4": 40.9
     }
   ],
   "crossBuild": {
