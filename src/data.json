@@ -295,7 +295,7 @@
     }
   ],
   "crossBuild": {
-    "generated": "2026-07-20",
+    "generated": "2026-07-21",
     "window_weeks": 18,
     "completed": [
       {
@@ -343,10 +343,10 @@
     ],
     "head_to_head": {
       "weeks_out": 12,
-      "note": "trailing 4 weeks at ~12 weeks out from race day (as of 2026-07-20)",
+      "note": "trailing 4 weeks at ~12 weeks out from race day (as of 2026-07-21)",
       "chi": {
-        "avg": 52.4,
-        "ef": 1.465
+        "avg": 49.3,
+        "ef": 1.452
       },
       "indy": {
         "avg": 65.1,
