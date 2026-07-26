@@ -6,13 +6,13 @@
     "blockWeeks": 23,
     "goal": "sub-2:37:00",
     "goalPace": "5:59/mi",
-    "daysToRace": 78,
+    "daysToRace": 77,
     "currentPhase": 1,
     "currentPhaseName": "Engine Room",
     "currentWeek": 12,
     "blockMilesToDate": 655.9,
     "peakMpw": 88,
-    "lastUpdated": "2026-07-25"
+    "lastUpdated": "2026-07-26"
   },
   "phases": [
     {
@@ -290,12 +290,12 @@
         "commute": 17.8,
         "other": 0.0
       },
-      "partial": true,
+      "partial": false,
       "rolling4": 49.1
     }
   ],
   "crossBuild": {
-    "generated": "2026-07-25",
+    "generated": "2026-07-26",
     "window_weeks": 18,
     "completed": [
       {
@@ -343,7 +343,7 @@
     ],
     "head_to_head": {
       "weeks_out": 11,
-      "note": "trailing 4 weeks at ~11 weeks out from race day (as of 2026-07-25)",
+      "note": "trailing 4 weeks at ~11 weeks out from race day (as of 2026-07-26)",
       "chi": {
         "avg": 49.1,
         "ef": 1.454
