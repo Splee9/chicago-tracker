@@ -6,13 +6,13 @@
     "blockWeeks": 23,
     "goal": "sub-2:37:00",
     "goalPace": "5:59/mi",
-    "daysToRace": 67,
-    "currentPhase": 1,
-    "currentPhaseName": "Engine Room",
-    "currentWeek": 14,
-    "blockMilesToDate": 724.1,
+    "daysToRace": 40,
+    "currentPhase": 2,
+    "currentPhaseName": "Sharpening",
+    "currentWeek": 18,
+    "blockMilesToDate": 1021.5,
     "peakMpw": 88,
-    "lastUpdated": "2026-08-05"
+    "lastUpdated": "2026-09-01"
   },
   "phases": [
     {
@@ -318,24 +318,105 @@
       "weekStart": "2026-08-03",
       "phase": 1,
       "phaseShort": "Engine",
-      "miles": 0.0,
-      "runs": 0,
-      "longest": 0.0,
-      "easyEF": null,
+      "miles": 68.3,
+      "runs": 7,
+      "longest": 18.7,
+      "easyEF": 1.617,
       "types": {
-        "quality": 0.0,
+        "quality": 11.7,
+        "long": 18.7,
+        "medlong": 0.0,
+        "easy": 27.2,
+        "commute": 10.6,
+        "other": 0.0
+      },
+      "partial": false,
+      "rolling4": 63.8
+    },
+    {
+      "week": 15,
+      "weekStart": "2026-08-10",
+      "phase": 1,
+      "phaseShort": "Engine",
+      "miles": 64.9,
+      "runs": 7,
+      "longest": 17.9,
+      "easyEF": 1.602,
+      "types": {
+        "quality": 12.6,
+        "long": 17.9,
+        "medlong": 0.0,
+        "easy": 29.1,
+        "commute": 5.4,
+        "other": 0.0
+      },
+      "partial": false,
+      "rolling4": 63.4
+    },
+    {
+      "week": 16,
+      "weekStart": "2026-08-17",
+      "phase": 2,
+      "phaseShort": "Sharpen",
+      "miles": 70.5,
+      "runs": 7,
+      "longest": 20.5,
+      "easyEF": 1.621,
+      "types": {
+        "quality": 11.6,
+        "long": 20.5,
+        "medlong": 0.0,
+        "easy": 27.6,
+        "commute": 10.8,
+        "other": 0.0
+      },
+      "partial": false,
+      "rolling4": 68.0
+    },
+    {
+      "week": 17,
+      "weekStart": "2026-08-24",
+      "phase": 2,
+      "phaseShort": "Sharpen",
+      "miles": 74.7,
+      "runs": 7,
+      "longest": 21.3,
+      "easyEF": 1.629,
+      "types": {
+        "quality": 25.5,
+        "long": 21.3,
+        "medlong": 0.0,
+        "easy": 23.4,
+        "commute": 4.6,
+        "other": 0.0
+      },
+      "partial": false,
+      "rolling4": 69.6
+    },
+    {
+      "week": 18,
+      "weekStart": "2026-08-31",
+      "phase": 2,
+      "phaseShort": "Sharpen",
+      "miles": 19.0,
+      "runs": 2,
+      "longest": 10.8,
+      "easyEF": 1.541,
+      "types": {
+        "quality": 10.8,
         "long": 0.0,
         "medlong": 0.0,
-        "easy": 0.0,
+        "easy": 8.2,
         "commute": 0.0,
         "other": 0.0
       },
       "partial": true,
-      "rolling4": 46.7
+      "rolling4": 57.3
     }
   ],
   "crossBuild": {
-    "generated": "2026-08-05",
+    "generated": "2026-09-01",
+    "source": "apps/health/data/builds.json",
     "window_weeks": 18,
     "completed": [
       {
@@ -343,54 +424,74 @@
         "result": "3:21:42",
         "avg": 40.6,
         "peak": 61.2,
-        "ef": 1.346
+        "ef": 1.346,
+        "window_days": 126
       },
       {
         "build": "Grand Rapids 2022",
         "result": "3:02:56",
         "avg": 45.6,
         "peak": 67.5,
-        "ef": 1.419
+        "ef": 1.419,
+        "window_days": 126
       },
       {
         "build": "Madison 2023",
         "result": "2:57:47",
         "avg": 45.9,
         "peak": 70.1,
-        "ef": 1.399
+        "ef": 1.399,
+        "window_days": 126
       },
       {
         "build": "Chicago 2024",
         "result": "2:59:05",
         "avg": 59.3,
         "peak": 77.0,
-        "ef": 1.466
+        "ef": 1.466,
+        "window_days": 126
       },
       {
         "build": "Wisconsin 2025",
         "result": "2:55:58",
         "avg": 52.3,
         "peak": 66.9,
-        "ef": 1.498
+        "ef": 1.498,
+        "window_days": 126
       },
       {
         "build": "Indianapolis 2025",
         "result": "2:45:55",
         "avg": 60.5,
         "peak": 78.6,
-        "ef": 1.547
+        "ef": 1.547,
+        "window_days": 126
       }
     ],
     "head_to_head": {
-      "weeks_out": 10,
-      "note": "trailing 4 weeks at ~10 weeks out from race day (as of 2026-08-05)",
+      "weeks_out": 6,
+      "note": "trailing 4 weeks at ~6 weeks out from race day (as of 2026-09-01)",
+      "current": {
+        "build": "Chicago 2026",
+        "avg": 68.0,
+        "ef": 1.61
+      },
+      "benchmark": {
+        "build": "Indianapolis 2025",
+        "result": "2:45:55",
+        "avg": 71.7,
+        "ef": 1.592
+      },
       "chi": {
-        "avg": 50.6,
-        "ef": 1.538
+        "build": "Chicago 2026",
+        "avg": 68.0,
+        "ef": 1.61
       },
       "indy": {
-        "avg": 68.2,
-        "ef": 1.534
+        "build": "Indianapolis 2025",
+        "result": "2:45:55",
+        "avg": 71.7,
+        "ef": 1.592
       }
     }
   },
