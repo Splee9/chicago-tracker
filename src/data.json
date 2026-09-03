@@ -6,13 +6,13 @@
     "blockWeeks": 23,
     "goal": "sub-2:37:00",
     "goalPace": "5:59/mi",
-    "daysToRace": 39,
+    "daysToRace": 38,
     "currentPhase": 2,
     "currentPhaseName": "Sharpening",
     "currentWeek": 18,
-    "blockMilesToDate": 1036.0,
+    "blockMilesToDate": 1044.2,
     "peakMpw": 88,
-    "lastUpdated": "2026-09-02"
+    "lastUpdated": "2026-09-03"
   },
   "phases": [
     {
@@ -398,24 +398,24 @@
       "weekStart": "2026-08-31",
       "phase": 2,
       "phaseShort": "Sharpen",
-      "miles": 33.5,
-      "runs": 4,
+      "miles": 41.7,
+      "runs": 5,
       "longest": 13.0,
-      "easyEF": 1.576,
+      "easyEF": 1.573,
       "types": {
         "quality": 23.7,
         "long": 0.0,
         "medlong": 0.0,
-        "easy": 8.2,
+        "easy": 16.4,
         "commute": 1.6,
         "other": 0.0
       },
       "partial": true,
-      "rolling4": 60.9
+      "rolling4": 63.0
     }
   ],
   "crossBuild": {
-    "generated": "2026-09-02",
+    "generated": "2026-09-03",
     "source": "apps/health/data/builds.json",
     "window_weeks": 18,
     "completed": [
@@ -469,29 +469,29 @@
       }
     ],
     "head_to_head": {
-      "weeks_out": 6,
-      "note": "trailing 4 weeks at ~6 weeks out from race day (as of 2026-09-02)",
+      "weeks_out": 5,
+      "note": "trailing 4 weeks at ~5 weeks out from race day (as of 2026-09-03)",
       "current": {
         "build": "Chicago 2026",
-        "avg": 68.8,
-        "ef": 1.609
+        "avg": 67.7,
+        "ef": 1.606
       },
       "benchmark": {
         "build": "Indianapolis 2025",
         "result": "2:45:55",
-        "avg": 71.7,
-        "ef": 1.592
+        "avg": 72.6,
+        "ef": 1.593
       },
       "chi": {
         "build": "Chicago 2026",
-        "avg": 68.8,
-        "ef": 1.609
+        "avg": 67.7,
+        "ef": 1.606
       },
       "indy": {
         "build": "Indianapolis 2025",
         "result": "2:45:55",
-        "avg": 71.7,
-        "ef": 1.592
+        "avg": 72.6,
+        "ef": 1.593
       }
     }
   },
