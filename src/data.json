@@ -6,13 +6,13 @@
     "blockWeeks": 23,
     "goal": "sub-2:37:00",
     "goalPace": "5:59/mi",
-    "daysToRace": 38,
+    "daysToRace": 37,
     "currentPhase": 2,
     "currentPhaseName": "Sharpening",
     "currentWeek": 18,
-    "blockMilesToDate": 1044.2,
+    "blockMilesToDate": 1054.1,
     "peakMpw": 88,
-    "lastUpdated": "2026-09-03"
+    "lastUpdated": "2026-09-04"
   },
   "phases": [
     {
@@ -398,24 +398,24 @@
       "weekStart": "2026-08-31",
       "phase": 2,
       "phaseShort": "Sharpen",
-      "miles": 41.7,
-      "runs": 5,
+      "miles": 51.6,
+      "runs": 7,
       "longest": 13.0,
-      "easyEF": 1.573,
+      "easyEF": 1.58,
       "types": {
         "quality": 23.7,
         "long": 0.0,
         "medlong": 0.0,
-        "easy": 16.4,
-        "commute": 1.6,
+        "easy": 21.0,
+        "commute": 6.9,
         "other": 0.0
       },
       "partial": true,
-      "rolling4": 63.0
+      "rolling4": 65.4
     }
   ],
   "crossBuild": {
-    "generated": "2026-09-03",
+    "generated": "2026-09-04",
     "source": "apps/health/data/builds.json",
     "window_weeks": 18,
     "completed": [
@@ -470,11 +470,11 @@
     ],
     "head_to_head": {
       "weeks_out": 5,
-      "note": "trailing 4 weeks at ~5 weeks out from race day (as of 2026-09-03)",
+      "note": "trailing 4 weeks at ~5 weeks out from race day (as of 2026-09-04)",
       "current": {
         "build": "Chicago 2026",
-        "avg": 67.7,
-        "ef": 1.606
+        "avg": 65.4,
+        "ef": 1.608
       },
       "benchmark": {
         "build": "Indianapolis 2025",
@@ -484,8 +484,8 @@
       },
       "chi": {
         "build": "Chicago 2026",
-        "avg": 67.7,
-        "ef": 1.606
+        "avg": 65.4,
+        "ef": 1.608
       },
       "indy": {
         "build": "Indianapolis 2025",
