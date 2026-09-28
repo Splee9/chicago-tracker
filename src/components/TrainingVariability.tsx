@@ -19,11 +19,11 @@ export function TrainingVariability() {
   const builds = tv.completed;
   const h2h = tv.head_to_head;
 
-  // Scatter: x = mean h/wk, y = TV score. Lower TV is steadier (better).
-  const allMeanHWk = [...builds.map((b) => b.mean_h_wk), h2h.chi.mean_h_wk, h2h.indy.mean_h_wk];
+  // Scatter: x = running efficiency (m/beat), y = TV score. Lower TV is steadier (better).
+  const allEf = [...builds.map((b) => b.ef), h2h.chi.ef, h2h.indy.ef];
   const allTV = [...builds.map((b) => b.tv), h2h.chi.tv, h2h.indy.tv];
-  const xMin = Math.min(...allMeanHWk) - 0.5;
-  const xMax = Math.max(...allMeanHWk) + 0.5;
+  const xMin = Math.min(...allEf) - 0.03;
+  const xMax = Math.max(...allEf) + 0.03;
   const yMin = 0;
   const yMax = Math.max(...allTV) + 5;
   const x = (v: number) => PAD.l + (plotW * (v - xMin)) / (xMax - xMin);
@@ -50,6 +50,7 @@ export function TrainingVariability() {
             sub="this build (7/8 weeks)"
             tv={h2h.chi.tv}
             band={h2h.chi.band}
+            ef={h2h.chi.ef}
             meanHWk={h2h.chi.mean_h_wk}
             accent
           />
@@ -59,6 +60,7 @@ export function TrainingVariability() {
             sub="2:45:55 — current PR build"
             tv={h2h.indy.tv}
             band={h2h.indy.band}
+            ef={h2h.indy.ef}
             meanHWk={h2h.indy.mean_h_wk}
           />
         </div>
@@ -70,7 +72,7 @@ export function TrainingVariability() {
           className={styles.chart}
           viewBox={`0 0 ${W} ${H}`}
           role="img"
-          aria-label="Training Variability versus mean weekly run hours across builds"
+          aria-label="Training Variability versus running efficiency across builds"
         >
           {/* axes */}
           {tvTicks(yMin, yMax).map((v) => (
@@ -81,13 +83,13 @@ export function TrainingVariability() {
               </text>
             </g>
           ))}
-          {meanTicks(xMin, xMax).map((v) => (
+          {efTicks(xMin, xMax).map((v) => (
             <text key={`x${v}`} x={x(v)} y={H - PAD.b + 22} className={styles.axisLabel} textAnchor="middle">
-              {v.toFixed(1)}
+              {v.toFixed(2)}
             </text>
           ))}
           <text x={PAD.l} y={H - 10} className={styles.axisTitle}>
-            mean h/wk →
+            running efficiency (m/beat) →
           </text>
           <text x={16} y={PAD.t - 12} className={styles.axisTitle}>
             ↑ TV (lower = steadier)
@@ -109,13 +111,13 @@ export function TrainingVariability() {
                 whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                style={{ transformOrigin: `${x(b.mean_h_wk)}px ${y(b.tv)}px`, cursor: "pointer" }}
+                style={{ transformOrigin: `${x(b.ef)}px ${y(b.tv)}px`, cursor: "pointer" }}
                 onMouseEnter={() => setHoverBuild(b.build)}
                 onMouseLeave={() => setHoverBuild(null)}
               >
                 {active && (
                   <circle
-                    cx={x(b.mean_h_wk)}
+                    cx={x(b.ef)}
                     cy={y(b.tv)}
                     r={14}
                     fill="none"
@@ -125,7 +127,7 @@ export function TrainingVariability() {
                   />
                 )}
                 <circle
-                  cx={x(b.mean_h_wk)}
+                  cx={x(b.ef)}
                   cy={y(b.tv)}
                   r={active ? 8 : 6}
                   fill="var(--muted)"
@@ -135,7 +137,7 @@ export function TrainingVariability() {
                   }}
                 />
                 <text
-                  x={x(b.mean_h_wk)}
+                  x={x(b.ef)}
                   y={y(b.tv) - 12}
                   className={styles.pointLabel}
                   textAnchor="middle"
@@ -144,7 +146,7 @@ export function TrainingVariability() {
                   {b.build.replace(/ 20/, " '")}
                 </text>
                 <text
-                  x={x(b.mean_h_wk)}
+                  x={x(b.ef)}
                   y={y(b.tv) + 20}
                   className={styles.pointResult}
                   textAnchor="middle"
@@ -162,11 +164,11 @@ export function TrainingVariability() {
             whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: builds.length * 0.08 + 0.1 }}
-            style={{ transformOrigin: `${x(h2h.chi.mean_h_wk)}px ${y(h2h.chi.tv)}px` }}
+            style={{ transformOrigin: `${x(h2h.chi.ef)}px ${y(h2h.chi.tv)}px` }}
           >
-            <circle cx={x(h2h.chi.mean_h_wk)} cy={y(h2h.chi.tv)} r={9} fill="var(--p3)" />
+            <circle cx={x(h2h.chi.ef)} cy={y(h2h.chi.tv)} r={9} fill="var(--p3)" />
             <circle
-              cx={x(h2h.chi.mean_h_wk)}
+              cx={x(h2h.chi.ef)}
               cy={y(h2h.chi.tv)}
               r={15}
               fill="none"
@@ -175,7 +177,7 @@ export function TrainingVariability() {
               opacity={0.5}
             />
             <text
-              x={x(h2h.chi.mean_h_wk)}
+              x={x(h2h.chi.ef)}
               y={y(h2h.chi.tv) - 20}
               className={styles.chiLabel}
               textAnchor="middle"
@@ -193,6 +195,7 @@ export function TrainingVariability() {
           <span>Finish</span>
           <span>TV</span>
           <span>Band</span>
+          <span>Easy EF</span>
           <span>Mean h/wk</span>
         </div>
         {builds.map((b) => (
@@ -206,6 +209,7 @@ export function TrainingVariability() {
             <span className={styles.tmono}>{b.result}</span>
             <span className={styles.tmono}>{b.tv.toFixed(2)}</span>
             <span className={styles.tband}>{b.band}</span>
+            <span className={styles.tmono}>{b.ef.toFixed(3)}</span>
             <span className={styles.tmono}>{fmt1(b.mean_h_wk)}</span>
           </div>
         ))}
@@ -226,6 +230,7 @@ function TVCol({
   sub,
   tv,
   band,
+  ef,
   meanHWk,
   accent,
 }: {
@@ -233,6 +238,7 @@ function TVCol({
   sub: string;
   tv: number;
   band: string;
+  ef: number;
   meanHWk: number;
   accent?: boolean;
 }) {
@@ -250,6 +256,10 @@ function TVCol({
           <span className={styles.h2hUnit}>band</span>
         </div>
         <div>
+          <span className={styles.h2hVal}>{ef.toFixed(3)}</span>
+          <span className={styles.h2hUnit}>easy EF</span>
+        </div>
+        <div>
           <span className={styles.h2hVal}>{fmt1(meanHWk)}</span>
           <span className={styles.h2hUnit}>mean h/wk</span>
         </div>
@@ -265,8 +275,8 @@ function tvTicks(min: number, max: number): number[] {
   return out;
 }
 
-function meanTicks(min: number, max: number): number[] {
+function efTicks(min: number, max: number): number[] {
   const out: number[] = [];
-  for (let v = Math.ceil(min); v <= max; v += 1) out.push(v);
+  for (let v = Math.ceil(min * 20) / 20; v < max; v += 0.05) out.push(Math.round(v * 100) / 100);
   return out;
 }
