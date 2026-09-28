@@ -10,7 +10,7 @@
     "currentPhase": 3,
     "currentPhaseName": "Taper",
     "currentWeek": 22,
-    "blockMilesToDate": 1176.0,
+    "blockMilesToDate": 1184.2,
     "peakMpw": 88,
     "lastUpdated": "2026-09-28"
   },
@@ -478,20 +478,20 @@
       "weekStart": "2026-09-28",
       "phase": 3,
       "phaseShort": "Taper",
-      "miles": 0.0,
-      "runs": 0,
-      "longest": 0.0,
-      "easyEF": null,
+      "miles": 8.2,
+      "runs": 1,
+      "longest": 8.2,
+      "easyEF": 1.578,
       "types": {
         "quality": 0.0,
         "long": 0.0,
         "medlong": 0.0,
-        "easy": 0.0,
+        "easy": 8.2,
         "commute": 0.0,
         "other": 0.0
       },
       "partial": true,
-      "rolling4": 27.5
+      "rolling4": 29.5
     }
   ],
   "crossBuild": {
@@ -594,13 +594,13 @@
   "trainingVariability": {
     "metric": "run_tv",
     "window_weeks": 8,
-    "definition": "Week-to-week continuity of run hours: (sample stdev \u00f7 mean) \u00d7 100 over the 8 Mon\u2013Sun weeks before race week. Zeros count. Lower is steadier.",
+    "definition": "Week-to-week continuity of run hours: (sample stdev ÷ mean) × 100 over the 8 Mon–Sun weeks before race week. Zeros count. Lower is steadier.",
     "lower_is_steadier": true,
     "bands": {
       "Steady": "<35",
-      "Moderate": "35\u2013<55",
-      "Uneven": "55\u2013<80",
-      "Erratic": "\u226580"
+      "Moderate": "35–<55",
+      "Uneven": "55–<80",
+      "Erratic": "≥80"
     },
     "generated": "2026-09-28",
     "completed": [
@@ -649,7 +649,7 @@
     ],
     "head_to_head": {
       "weeks_out": 2,
-      "note": "8-week run Training Variability ending the Sunday before race week (Chicago \u201926 still mid-window: 7 of 8 weeks through Sep 27).",
+      "note": "8-week run Training Variability ending the Sunday before race week (Chicago '26 still mid-window: 7 of 8 weeks through 2026-09-27).",
       "chi": {
         "build": "Chicago 2026",
         "tv": 36.96,
