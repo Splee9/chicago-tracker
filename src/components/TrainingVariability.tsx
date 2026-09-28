@@ -19,13 +19,13 @@ export function TrainingVariability() {
   const builds = tv.completed;
   const h2h = tv.head_to_head;
 
-  // Scatter: x = running efficiency (m/beat), y = TV score. Lower TV is steadier (better).
-  const allEf = [...builds.map((b) => b.ef), h2h.chi.ef, h2h.indy.ef];
+  // Scatter: x = TV score (lower = steadier), y = running efficiency (m/beat).
   const allTV = [...builds.map((b) => b.tv), h2h.chi.tv, h2h.indy.tv];
-  const xMin = Math.min(...allEf) - 0.03;
-  const xMax = Math.max(...allEf) + 0.03;
-  const yMin = 0;
-  const yMax = Math.max(...allTV) + 5;
+  const allEf = [...builds.map((b) => b.ef), h2h.chi.ef, h2h.indy.ef];
+  const xMin = 0;
+  const xMax = Math.max(...allTV) + 5;
+  const yMin = Math.min(...allEf) - 0.03;
+  const yMax = Math.max(...allEf) + 0.03;
   const x = (v: number) => PAD.l + (plotW * (v - xMin)) / (xMax - xMin);
   const y = (v: number) => PAD.t + plotH * (1 - (v - yMin) / (yMax - yMin));
 
@@ -72,33 +72,33 @@ export function TrainingVariability() {
           className={styles.chart}
           viewBox={`0 0 ${W} ${H}`}
           role="img"
-          aria-label="Training Variability versus running efficiency across builds"
+          aria-label="Running efficiency versus Training Variability across builds"
         >
           {/* axes */}
-          {tvTicks(yMin, yMax).map((v) => (
+          {efTicks(yMin, yMax).map((v) => (
             <g key={`y${v}`}>
               <line x1={PAD.l} x2={W - PAD.r} y1={y(v)} y2={y(v)} stroke="var(--line)" />
               <text x={PAD.l - 8} y={y(v) + 4} className={styles.axisLabel} textAnchor="end">
-                {v}
+                {v.toFixed(2)}
               </text>
             </g>
           ))}
-          {efTicks(xMin, xMax).map((v) => (
+          {tvTicks(xMin, xMax).map((v) => (
             <text key={`x${v}`} x={x(v)} y={H - PAD.b + 22} className={styles.axisLabel} textAnchor="middle">
-              {v.toFixed(2)}
+              {v}
             </text>
           ))}
           <text x={PAD.l} y={H - 10} className={styles.axisTitle}>
-            running efficiency (m/beat) →
+            TV (lower = steadier) →
           </text>
           <text x={16} y={PAD.t - 12} className={styles.axisTitle}>
-            ↑ TV (lower = steadier)
+            ↑ running efficiency (m/beat)
           </text>
 
           {/* band regions (optional subtle background bands) */}
           {/* Steady: <35, Moderate: 35-<55 */}
-          <rect x={PAD.l} y={y(35)} width={plotW} height={y(0) - y(35)} fill="var(--t-easy)" opacity={0.15} />
-          <rect x={PAD.l} y={y(55)} width={plotW} height={y(35) - y(55)} fill="var(--t-medlong)" opacity={0.12} />
+          <rect x={x(0)} y={PAD.t} width={x(35) - x(0)} height={plotH} fill="var(--t-easy)" opacity={0.15} />
+          <rect x={x(35)} y={PAD.t} width={x(55) - x(35)} height={plotH} fill="var(--t-medlong)" opacity={0.12} />
 
           {/* completed builds */}
           {builds.map((b, i) => {
@@ -111,14 +111,14 @@ export function TrainingVariability() {
                 whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                style={{ transformOrigin: `${x(b.ef)}px ${y(b.tv)}px`, cursor: "pointer" }}
+                style={{ transformOrigin: `${x(b.tv)}px ${y(b.ef)}px`, cursor: "pointer" }}
                 onMouseEnter={() => setHoverBuild(b.build)}
                 onMouseLeave={() => setHoverBuild(null)}
               >
                 {active && (
                   <circle
-                    cx={x(b.ef)}
-                    cy={y(b.tv)}
+                    cx={x(b.tv)}
+                    cy={y(b.ef)}
                     r={14}
                     fill="none"
                     stroke="var(--ink)"
@@ -127,8 +127,8 @@ export function TrainingVariability() {
                   />
                 )}
                 <circle
-                  cx={x(b.ef)}
-                  cy={y(b.tv)}
+                  cx={x(b.tv)}
+                  cy={y(b.ef)}
                   r={active ? 8 : 6}
                   fill="var(--muted)"
                   style={{
@@ -137,8 +137,8 @@ export function TrainingVariability() {
                   }}
                 />
                 <text
-                  x={x(b.ef)}
-                  y={y(b.tv) - 12}
+                  x={x(b.tv)}
+                  y={y(b.ef) - 12}
                   className={styles.pointLabel}
                   textAnchor="middle"
                   style={{ opacity: dim ? 0.3 : 1, fontWeight: active ? 700 : 600, transition: "opacity 0.2s ease" }}
@@ -146,8 +146,8 @@ export function TrainingVariability() {
                   {b.build.replace(/ 20/, " '")}
                 </text>
                 <text
-                  x={x(b.ef)}
-                  y={y(b.tv) + 20}
+                  x={x(b.tv)}
+                  y={y(b.ef) + 20}
                   className={styles.pointResult}
                   textAnchor="middle"
                   style={{ opacity: dim ? 0.3 : 1, transition: "opacity 0.2s ease" }}
@@ -164,12 +164,12 @@ export function TrainingVariability() {
             whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: builds.length * 0.08 + 0.1 }}
-            style={{ transformOrigin: `${x(h2h.chi.ef)}px ${y(h2h.chi.tv)}px` }}
+            style={{ transformOrigin: `${x(h2h.chi.tv)}px ${y(h2h.chi.ef)}px` }}
           >
-            <circle cx={x(h2h.chi.ef)} cy={y(h2h.chi.tv)} r={9} fill="var(--p3)" />
+            <circle cx={x(h2h.chi.tv)} cy={y(h2h.chi.ef)} r={9} fill="var(--p3)" />
             <circle
-              cx={x(h2h.chi.ef)}
-              cy={y(h2h.chi.tv)}
+              cx={x(h2h.chi.tv)}
+              cy={y(h2h.chi.ef)}
               r={15}
               fill="none"
               stroke="var(--p3)"
@@ -177,8 +177,8 @@ export function TrainingVariability() {
               opacity={0.5}
             />
             <text
-              x={x(h2h.chi.ef)}
-              y={y(h2h.chi.tv) - 20}
+              x={x(h2h.chi.tv)}
+              y={y(h2h.chi.ef) - 20}
               className={styles.chiLabel}
               textAnchor="middle"
             >
