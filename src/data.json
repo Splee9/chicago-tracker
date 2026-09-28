@@ -590,5 +590,79 @@
     "easy": "Easy",
     "commute": "Commute",
     "other": "Other"
+  },
+  "trainingVariability": {
+    "metric": "run_tv",
+    "window_weeks": 8,
+    "definition": "Week-to-week continuity of run hours: (sample stdev \u00f7 mean) \u00d7 100 over the 8 Mon\u2013Sun weeks before race week. Zeros count. Lower is steadier.",
+    "lower_is_steadier": true,
+    "bands": {
+      "Steady": "<35",
+      "Moderate": "35\u2013<55",
+      "Uneven": "55\u2013<80",
+      "Erratic": "\u226580"
+    },
+    "generated": "2026-09-28",
+    "completed": [
+      {
+        "build": "Flying Pig 2022",
+        "result": "3:21:42",
+        "tv": 21.41,
+        "mean_h_wk": 7.57,
+        "band": "Steady"
+      },
+      {
+        "build": "Grand Rapids 2022",
+        "result": "3:02:56",
+        "tv": 21.34,
+        "mean_h_wk": 7.49,
+        "band": "Steady"
+      },
+      {
+        "build": "Madison 2023",
+        "result": "2:57:47",
+        "tv": 14.17,
+        "mean_h_wk": 7.99,
+        "band": "Steady"
+      },
+      {
+        "build": "Chicago 2024",
+        "result": "2:59:05",
+        "tv": 12.0,
+        "mean_h_wk": 8.35,
+        "band": "Steady"
+      },
+      {
+        "build": "Wisconsin 2025",
+        "result": "2:55:58",
+        "tv": 22.74,
+        "mean_h_wk": 6.74,
+        "band": "Steady"
+      },
+      {
+        "build": "Indianapolis 2025",
+        "result": "2:45:55",
+        "tv": 10.84,
+        "mean_h_wk": 8.53,
+        "band": "Steady"
+      }
+    ],
+    "head_to_head": {
+      "weeks_out": 2,
+      "note": "8-week run Training Variability ending the Sunday before race week (Chicago \u201926 still mid-window: 7 of 8 weeks through Sep 27).",
+      "chi": {
+        "build": "Chicago 2026",
+        "tv": 36.96,
+        "mean_h_wk": 6.66,
+        "band": "Moderate"
+      },
+      "indy": {
+        "build": "Indianapolis 2025",
+        "result": "2:45:55",
+        "tv": 10.84,
+        "mean_h_wk": 8.53,
+        "band": "Steady"
+      }
+    }
   }
 }
