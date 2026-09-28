@@ -609,6 +609,7 @@
         "result": "3:21:42",
         "tv": 21.41,
         "mean_h_wk": 7.57,
+        "ef": 1.346,
         "band": "Steady"
       },
       {
@@ -616,6 +617,7 @@
         "result": "3:02:56",
         "tv": 21.34,
         "mean_h_wk": 7.49,
+        "ef": 1.419,
         "band": "Steady"
       },
       {
@@ -623,6 +625,7 @@
         "result": "2:57:47",
         "tv": 14.17,
         "mean_h_wk": 7.99,
+        "ef": 1.399,
         "band": "Steady"
       },
       {
@@ -630,6 +633,7 @@
         "result": "2:59:05",
         "tv": 12.0,
         "mean_h_wk": 8.35,
+        "ef": 1.466,
         "band": "Steady"
       },
       {
@@ -637,6 +641,7 @@
         "result": "2:55:58",
         "tv": 22.74,
         "mean_h_wk": 6.74,
+        "ef": 1.498,
         "band": "Steady"
       },
       {
@@ -644,6 +649,7 @@
         "result": "2:45:55",
         "tv": 10.84,
         "mean_h_wk": 8.53,
+        "ef": 1.547,
         "band": "Steady"
       }
     ],
@@ -654,6 +660,7 @@
         "build": "Chicago 2026",
         "tv": 36.96,
         "mean_h_wk": 6.66,
+        "ef": 1.573,
         "band": "Moderate"
       },
       "indy": {
@@ -661,6 +668,7 @@
         "result": "2:45:55",
         "tv": 10.84,
         "mean_h_wk": 8.53,
+        "ef": 1.593,
         "band": "Steady"
       }
     }

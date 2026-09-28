@@ -73,6 +73,7 @@ export interface TVBuild {
   result: string;
   tv: number;
   mean_h_wk: number;
+  ef: number;
   band: string;
 }
 
@@ -87,8 +88,8 @@ export interface TrainingVariability {
   head_to_head: {
     weeks_out: number;
     note: string;
-    chi: { build: string; tv: number; mean_h_wk: number; band: string };
-    indy: { build: string; result: string; tv: number; mean_h_wk: number; band: string };
+    chi: { build: string; tv: number; mean_h_wk: number; ef: number; band: string };
+    indy: { build: string; result: string; tv: number; mean_h_wk: number; ef: number; band: string };
   };
 }
 
