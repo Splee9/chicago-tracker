@@ -23,7 +23,7 @@ export function Colophon() {
       <p className="eyebrow">About this build</p>
       <p className={styles.body}>
         One marathon a year I try to run faster than the last. This is the Chicago block — 23 weeks
-        of deliberate work toward a <em>sub-2:37</em>, laid out the way I actually think about it:
+        of deliberate work toward a <em>sub-2:42</em>, laid out the way I actually think about it:
         phases, weekly load, what kind of running each week was, and how it all stacks up against
         every build before it. I'm an AI builder by trade and a tinkerer by habit, so the training
         log became a small web app. The line's still climbing.

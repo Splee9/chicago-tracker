@@ -33,13 +33,20 @@ export function CrossBuild() {
   const efGain = ((h2h.chi.ef - h2h.indy.ef) / h2h.indy.ef) * 100;
   const avgGain = h2h.chi.avg - h2h.indy.avg;
 
+  const volumePhrase = avgGain >= 0 
+    ? `${fmt1(avgGain)} more miles a week` 
+    : `${fmt1(Math.abs(avgGain))} fewer miles a week`;
+  const efPhrase = efGain >= 0 
+    ? `${efGain.toFixed(0)}% higher` 
+    : `${Math.abs(efGain).toFixed(0)}% lower`;
+
   return (
     <section className={styles.section} aria-label="Comparison against prior marathon builds">
       <p className="eyebrow">Against the past</p>
       <h2 className={styles.heading}>
         Six marathon builds in the bank. At the same point out from race day, Chicago
-        is carrying <b>{fmt1(avgGain)} more miles a week</b> than the last one — at{" "}
-        <b>{efGain.toFixed(0)}% higher</b> aerobic efficiency.
+        is carrying <b>{volumePhrase}</b> than the last one — at{" "}
+        <b>{efPhrase}</b> aerobic efficiency.
       </h2>
 
       {/* head-to-head */}
