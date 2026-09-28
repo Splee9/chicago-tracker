@@ -68,11 +68,36 @@ export interface CrossBuild {
   };
 }
 
+export interface TVBuild {
+  build: string;
+  result: string;
+  tv: number;
+  mean_h_wk: number;
+  band: string;
+}
+
+export interface TrainingVariability {
+  metric: string;
+  window_weeks: number;
+  definition: string;
+  lower_is_steadier: boolean;
+  bands: Record<string, string>;
+  generated: string;
+  completed: TVBuild[];
+  head_to_head: {
+    weeks_out: number;
+    note: string;
+    chi: { build: string; tv: number; mean_h_wk: number; band: string };
+    indy: { build: string; result: string; tv: number; mean_h_wk: number; band: string };
+  };
+}
+
 export interface TrackerData {
   meta: Meta;
   phases: Phase[];
   weeks: WeekDatum[];
   crossBuild: CrossBuild | null;
+  trainingVariability: TrainingVariability | null;
   typeOrder: WorkoutType[];
   typeLabels: Record<WorkoutType, string>;
 }

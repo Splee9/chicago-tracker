@@ -3,6 +3,7 @@ import { Hero } from "./components/Hero";
 import { PhaseTimeline } from "./components/PhaseTimeline";
 import { WeeklyLoad } from "./components/WeeklyLoad";
 import { CrossBuild } from "./components/CrossBuild";
+import { TrainingVariability } from "./components/TrainingVariability";
 import { Colophon } from "./components/Colophon";
 import { Footer } from "./components/Footer";
 
@@ -15,6 +16,7 @@ export default function App() {
         <PhaseTimeline />
         <WeeklyLoad />
         <CrossBuild />
+        <TrainingVariability />
         <Colophon />
         <Footer />
       </main>
